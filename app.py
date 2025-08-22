@@ -26,75 +26,75 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 questions = [
     {
         "story_messages": [
-            {"text": "第1問のストーリー第一部", "delay_seconds": 1},
-            {"text": "第1問のストーリー第二部", "delay_seconds": 2}
+            {"text": "第1問のストーリー", "delay_seconds": 1},
+            {"text": "第1問のストーリー", "delay_seconds": 2}
         ],
         "puzzle_message": {"text": "第1問の問題文", "delay_seconds": 1.5},
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX1", "delay_seconds": 2},
         "hint_keyword": "hint1",
-        "hint_text": "第1問のヒントです",
+        "hint_text": "第1問のヒント",
         "correct_answer": "correct1"
     },
     {
         "story_messages": [
-            {"text": "第2問のストーリー第一部", "delay_seconds": 2}
+            {"text": "第2問のストーリー", "delay_seconds": 2}
         ],
         "puzzle_message": {"text": "第2問の問題文", "delay_seconds": 1},
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX2", "delay_seconds": 3},
         "hint_keyword": "hint2",
-        "hint_text": "第2問のヒントです",
+        "hint_text": "第2問のヒント",
         "correct_answer": "correct2"
     },
     {
         "story_messages": [
-            {"text": "第3問のストーリー第一部", "delay_seconds": 0.5},
-            {"text": "第3問のストーリー第二部", "delay_seconds": 1},
-            {"text": "第3問のストーリー第三部", "delay_seconds": 1.5}
+            {"text": "第3問のストーリー", "delay_seconds": 0.5},
+            {"text": "第3問のストーリー", "delay_seconds": 1},
+            {"text": "第3問のストーリー", "delay_seconds": 1.5}
         ],
         "puzzle_message": {"text": "第3問の問題文", "delay_seconds": 2},
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX3", "delay_seconds": 1},
         "hint_keyword": "hint3",
-        "hint_text": "第3問のヒントです",
+        "hint_text": "第3問のヒント",
         "correct_answer": "correct3"
     },
     {
         "story_messages": [
-            {"text": "第4問のストーリー第一部", "delay_seconds": 1},
-            {"text": "第4問のストーリー第二部", "delay_seconds": 1}
+            {"text": "第4問のストーリー", "delay_seconds": 1},
+            {"text": "第4問のストーリー", "delay_seconds": 1}
         ],
         "puzzle_message": {"text": "第4問の問題文", "delay_seconds": 1.5},
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX4", "delay_seconds": 2},
         "hint_keyword": "hint4",
-        "hint_text": "第4問のヒントです",
+        "hint_text": "第4問のヒント",
         "correct_answer": "correct4"
     },
     {
         "story_messages": [
-            {"text": "第5問のストーリー第一部", "delay_seconds": 1}
+            {"text": "第5問のストーリー", "delay_seconds": 1}
         ],
         "puzzle_message": {"text": "第5問の問題文", "delay_seconds": 1},
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX5", "delay_seconds": 1.5},
         "hint_keyword": "hint5",
-        "hint_text": "第5問のヒントです",
+        "hint_text": "第5問のヒント",
         "correct_answer": ["correct5a", "correct5b"],  # 正解が2つ（correct5aとcorrect5b）
         "good_end_story": [
-            {"text": "Goodエンドのストーリー第一部", "delay_seconds": 1},
-            {"text": "Goodエンドのストーリー第二部", "delay_seconds": 1}
+            {"text": "Goodエンドのストーリー", "delay_seconds": 1},
+            {"text": "Goodエンドのストーリー", "delay_seconds": 1}
         ],
         "bad_end_story": [
-            {"text": "Badエンドのストーリー第一部", "delay_seconds": 1},
-            {"text": "Badエンドのストーリー第二部", "delay_seconds": 1}
+            {"text": "Badエンドのストーリー", "delay_seconds": 1},
+            {"text": "Badエンドのストーリー", "delay_seconds": 1}
         ]
     },
     {
         "story_messages": [
-            {"text": "終章のストーリー第一部", "delay_seconds": 1},
-            {"text": "終章のストーリー第二部", "delay_seconds": 1}
+            {"text": "終章のストーリー", "delay_seconds": 1},
+            {"text": "終章のストーリー", "delay_seconds": 1}
         ],
         "puzzle_message": {"text": "終章のおまけ謎", "delay_seconds": 2},
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX6", "delay_seconds": 1},
         "hint_keyword": "hint6",
-        "hint_text": "終章のヒントです",
+        "hint_text": "終章のヒント",
         "correct_answer": "correct6"
     }
 ]
@@ -186,7 +186,7 @@ def handle_text(event):
                 send_content(user_id, "end_story", q["bad_end_story"], 5)
                 return
             elif qnum == 5 and text.lower() == q["correct_answer"].lower():  # 終章のおまけ謎
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text="大正解！探偵事務所にお越しください。"))
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text="大正解！"))
                 user_states[user_id]["current_q"] += 1
                 send_question(user_id, user_states[user_id]["current_q"])
                 return
