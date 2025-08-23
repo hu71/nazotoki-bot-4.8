@@ -26,73 +26,73 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 questions = [
     {
         "story_messages": [
-            {"text": "第1問のストーリー", "delay_seconds": 1},
-            {"text": "第1問のストーリー", "delay_seconds": 2}
+            {"text": "第1問のストーリー"},
+            {"text": "第1問のストーリー"}
         ],
-        "puzzle_message": {"text": "第1問の問題文", "delay_seconds": 1.5},
-        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX1", "delay_seconds": 2},
+        "puzzle_message": {"text": "第1問の問題文"},
+        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX1"},
         "hint_keyword": "hint1",
         "hint_text":"第1問のヒント",
         "correct_answer": "correct1"
     },
     {
         "story_messages": [
-            {"text": "第2問のストーリー", "delay_seconds": 2}
+            {"text": "第2問のストーリー"}
         ],
-        "puzzle_message": {"text": "第2問の問題文", "delay_seconds": 1},
-        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX2", "delay_seconds": 3},
+        "puzzle_message": {"text": "第2問の問題文"},
+        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX2"},
         "hint_keyword": "hint2",
         "hint_text": "第2問のヒント",
         "correct_answer": "correct2"
     },
     {
         "story_messages": [
-            {"text": "第3問のストーリー", "delay_seconds": 0.5},
-            {"text": "第3問のストーリー", "delay_seconds": 1},
-            {"text": "第3問のストーリー", "delay_seconds": 1.5}
+            {"text": "第3問のストーリー"},
+            {"text": "第3問のストーリー"},
+            {"text": "第3問のストーリー"}
         ],
-        "puzzle_message": {"text": "第3問の問題文", "delay_seconds": 2},
-        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX3", "delay_seconds": 1},
+        "puzzle_message": {"text": "第3問の問題文"},
+        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX3"},
         "hint_keyword": "hint3",
         "hint_text": "第3問のヒント",
         "correct_answer": "correct3"
     },
     {
         "story_messages": [
-            {"text": "第4問のストーリー", "delay_seconds": 1},
-            {"text": "第4問のストーリー", "delay_seconds": 1}
+            {"text": "第4問のストーリー"},
+            {"text": "第4問のストーリー"}
         ],
-        "puzzle_message": {"text": "第4問の問題文", "delay_seconds": 1.5},
-        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX4", "delay_seconds": 2},
+        "puzzle_message": {"text": "第4問の問題文"},
+        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX4"},
         "hint_keyword": "hint4",
         "hint_text": "第4問のヒント",
         "correct_answer": "correct4"
     },
     {
         "story_messages": [
-            {"text": "第5問のストーリー", "delay_seconds": 1}
+            {"text": "第5問のストーリー"}
         ],
-        "puzzle_message": {"text": "第5問の問題文", "delay_seconds": 1},
-        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX5", "delay_seconds": 1.5},
+        "puzzle_message": {"text": "第5問の問題文"},
+        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX5"},
         "hint_keyword": "hint5",
         "hint_text": "第5問のヒント",
         "correct_answer": ["correct5a", "correct5b"],  # 正解が2つ（correct5aとcorrect5b）
         "good_end_story": [
-            {"text": "Goodエンドのストーリー", "delay_seconds": 1},
-            {"text": "Goodエンドのストーリー", "delay_seconds": 1}
+            {"text": "Goodエンドのストーリー"},
+            {"text": "Goodエンドのストーリー"}
         ],
         "bad_end_story": [
-            {"text": "Badエンドのストーリー", "delay_seconds": 1},
-            {"text": "Badエンドのストーリー", "delay_seconds": 1}
+            {"text": "Badエンドのストーリー"},
+            {"text": "Badエンドのストーリー"}
         ]
     },
     {
         "story_messages": [
-            {"text": "終章のストーリー", "delay_seconds": 1},
-            {"text": "終章のストーリー", "delay_seconds": 1}
+            {"text": "終章のストーリー"},
+            {"text": "終章のストーリー"}
         ],
-        "puzzle_message": {"text": "終章のおまけ謎", "delay_seconds": 2},
-        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX6", "delay_seconds": 1},
+        "puzzle_message": {"text": "終章のおまけ謎"},
+        "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX6"},
         "hint_keyword": "hint6",
         "hint_text": "終章のヒント",
         "correct_answer": "correct6"
@@ -108,20 +108,13 @@ def send_content(user_id, content_type, content_data, next_qnum=None):
         if content_type == "question":
             q = content_data
             for story_msg in q["story_messages"]:
-                line_bot_api.push_message(user_id, TextSendMessage(text=story_msg["text"]))
-                time.sleep(story_msg["delay_seconds"])
+                line_bot_api.push_message(user_id, TextSendMessage(text=story_msg["text"])
             line_bot_api.push_message(user_id, TextSendMessage(text=q["puzzle_message"]["text"]))
-            time.sleep(q["puzzle_message"]["delay_seconds"])
-            line_bot_api.push_message(
-                user_id,
-                ImageSendMessage(original_content_url=q["image_url"]["url"], preview_image_url=q["image_url"]["url"])
-            )
-            time.sleep(q["image_url"]["delay_seconds"])
+            line_bot_api.push_message(user_id, ImageSendMessage(original_content_url=q["image_url"]["url"], preview_image_url=q["image_url"]["url"])
             line_bot_api.push_message(user_id, TextSendMessage(text="答えとなるテキストを送ってね！"))
         elif content_type == "end_story":
             for story_msg in content_data:
                 line_bot_api.push_message(user_id, TextSendMessage(text=story_msg["text"]))
-                time.sleep(story_msg["delay_seconds"])
             if next_qnum is not None:
                 send_question(user_id, next_qnum)
     except LineBotApiError as e:
