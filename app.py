@@ -212,9 +212,6 @@ def handle_text(event):
                 return
 
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text="メッセージを理解できませんでした。"))
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
             # 現在の問題の正解のみをチェック
             if isinstance(q["correct_answer"], list):
                 if qnum == 4 and text.lower() in q["correct_answer"]:  # 第5問
@@ -234,3 +231,5 @@ if __name__ == "__main__":
                     send_question(user_id, user_states[user_id]["current_q"])
                 elif qnum == 4:  # 第5問の単一正解パターン
                     send_content(user_id, "end_story", q["good_end_story"], 5)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
