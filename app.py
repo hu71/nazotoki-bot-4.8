@@ -217,18 +217,20 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
             # 現在の問題の正解のみをチェック
             if isinstance(q["correct_answer"], list):
-                if qnum == 4 and text.lower() in q["correct_answer"]:  # 第5問
-                    if text.lower() == q["correct_answer"][0]:  # correct5a → Goodエンド
-                        send_content(user_id, "end_story", q["good_end_story"], 5)
-                    elif text.lower() == q["correct_answer"][1]:  # correct5b → Badエンド
-                        send_content(user_id, "end_story", q["bad_end_story"], 5)
-                    return
-                elif qnum < 4 and text.lower() == q["correct_answer"][0]:  # 1〜4問（リストの先頭を正解とする）
-                    user_states[user_id]["current_q"] += 1
-                    send_question(user_id, user_states[user_id]["current_q"])
-                    return
-            elif text.lower() == q["correct_answer"].lower():  # 通常の文字列正解
-                if qnum < 4:
-                    user_states[user_id]["current_q"] += 1
-                    send_question(user_id, user_states[user_id]["current_q"])
-                elif q
+    if qnum == 4 and text.lower() in q["correct_answer"]:  # 第5問
+        if text.lower() == q["correct_answer"][0]:  # correct5a → Goodエンド
+            send_content(user_id, "end_story", q["good_end_story"], 5)
+        elif text.lower() == q["correct_answer"][1]:  # correct5b → Badエンド
+            send_content(user_id, "end_story", q["bad_end_story"], 5)
+        return
+    elif qnum < 4 and text.lower() == q["correct_answer"][0]:  # 1〜4問（リストの先頭を正解とする）
+        user_states[user_id]["current_q"] += 1
+        send_question(user_id, user_states[user_id]["current_q"])
+        return
+
+elif isinstance(q["correct_answer"], str) and text.lower() == q["correct_answer"].lower():  # 通常の文字列正解
+    if qnum < 4:
+        user_states[user_id]["current_q"] += 1
+        send_question(user_id, user_states[user_id]["current_q"])
+    elif qnum == 4:  # 第5問の単一正解パターン
+        send_content(user_id, "end_story", q["good_end_story"], 5)
