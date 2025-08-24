@@ -1,4 +1,4 @@
-import os
+８import os
 import time
 from flask import Flask, request
 from linebot import LineBotApi, WebhookHandler
@@ -91,9 +91,9 @@ questions = [
     },
     {
         "story_messages": [
-            {"text": "", "delay_seconds": },
-            {"text": "", "delay_seconds": },
-            {"text": "", "delay_seconds": }
+            {"text": "あ", "delay_seconds":1},
+            {"text": "あ", "delay_seconds":1},
+            {"text": "あ", "delay_seconds":1}
         ],
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=", "delay_seconds": 1},
         "hint_keyword": "hint5",
