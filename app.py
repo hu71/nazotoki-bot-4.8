@@ -127,7 +127,6 @@ def send_content(user_id, content_type, content_data, next_qnum=None):
             for story_msg in q["story_messages"]:
                 line_bot_api.push_message(user_id, TextSendMessage(text=story_msg["text"]))
                 time.sleep(story_msg["delay_seconds"])
-            time.sleep(q["puzzle_message"]["delay_seconds"])
             line_bot_api.push_message(
                 user_id,
                 ImageSendMessage(original_content_url=q["image_url"]["url"], preview_image_url=q["image_url"]["url"])
