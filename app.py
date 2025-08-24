@@ -26,8 +26,8 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 questions = [
     {
         "story_messages": [
-            {"text": "第1問のストーリー第一部", "delay_seconds": 1},
-            {"text": "第1問のストーリー第二部", "delay_seconds": 2}
+            {"text": "", "delay_seconds": },
+            {"text": "", "delay_seconds": }
         ],
         "puzzle_message": {"text": "第1問の問題文", "delay_seconds": 1.5},
         "image_url": {"url": "https://drive.google.com/uc?export=view&id=XXXXX1", "delay_seconds": 2},
