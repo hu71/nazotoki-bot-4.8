@@ -1,4 +1,4 @@
-８import os
+import os
 import time
 from flask import Flask, request
 from linebot import LineBotApi, WebhookHandler
